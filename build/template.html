@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vihan Chorada — Avaloka Assignment</title>
+<style>
+  @page { size: A4; margin: 17mm 17mm 19mm 17mm; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Calibri", Arial, sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.56;
+    color: #1c2530;
+  }
+
+  p { margin: 0 0 7.5pt; text-align: justify; hyphens: auto; orphans: 2; widows: 2; }
+  strong { font-weight: 600; color: #102a2b; }
+  em { font-style: italic; }
+
+  code {
+    font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 8.9pt;
+    background: #eef3f4;
+    border: 0.6pt solid #dfe8ea;
+    border-radius: 2pt;
+    padding: 0 1.5pt;
+    color: #0b4a4d;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  /* ---------- cover ---------- */
+  .cover { height: 244mm; display: flex; flex-direction: column; break-after: page; }
+  .brandline {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 0.8pt solid #cfdadc; padding-bottom: 2.5mm;
+    font-size: 7.6pt; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #56676b;
+  }
+  .brandline .accent { color: #0f5257; font-weight: 700; }
+  .cover-main { margin-top: 46mm; }
+  .eyebrow {
+    font-size: 7.8pt; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #0f5257; font-weight: 700; margin-bottom: 6mm;
+  }
+  .cover h1 {
+    margin: 0; font-size: 33pt; line-height: 1.09; letter-spacing: -0.02em;
+    font-weight: 600; color: #102a2b;
+  }
+  .cover .sub {
+    margin: 7mm 0 0; font-size: 12.6pt; line-height: 1.45;
+    color: #4d6067; max-width: 132mm; text-align: left;
+  }
+  .cover .meta {
+    margin-top: auto; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3.5mm 10mm; border-top: 0.8pt solid #cfdadc; padding-top: 5mm;
+  }
+  .cover .meta div { font-size: 9.6pt; color: #22323a; }
+  .cover .meta span {
+    display: block; font-size: 7.2pt; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #7b8a8f; margin-bottom: 1.2mm;
+  }
+  .cover-foot {
+    margin-top: 6mm; font-size: 8pt; color: #8b979c; letter-spacing: 0.02em;
+  }
+
+  /* ---------- headings ---------- */
+  .contents-title {
+    font-size: 22pt; font-weight: 600; color: #102a2b; margin: 0 0 3mm;
+    letter-spacing: -0.01em;
+  }
+  .contents-note {
+    font-size: 9.8pt; color: #4d6067; max-width: 150mm; margin: 0 0 8mm;
+    text-align: left;
+  }
+  h2 {
+    margin: 0 0 9pt; padding-top: 7pt; border-top: 2pt solid #0f5257;
+    font-size: 19pt; line-height: 1.16; font-weight: 600; color: #102a2b;
+    letter-spacing: -0.01em; break-before: page; break-after: avoid;
+  }
+  h2.flow { break-before: auto; margin-top: 26pt; }
+  h2 .num {
+    display: block; font-size: 7.6pt; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #0f5257; font-weight: 700;
+    margin-bottom: 4pt;
+  }
+  h3 {
+    margin: 15pt 0 5pt; font-size: 12.4pt; font-weight: 600; color: #10474a;
+    line-height: 1.3; break-after: avoid;
+  }
+  h4 { margin: 10pt 0 3pt; font-size: 10.4pt; font-weight: 600; color: #22323a; break-after: avoid; }
+
+  .lede {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11.4pt; line-height: 1.55; color: #46575e;
+    margin: 0 0 10pt; text-align: left;
+  }
+
+  /* ---------- toc ---------- */
+  .toc { list-style: none; margin: 0; padding: 0; }
+  .toc li {
+    display: flex; align-items: baseline; gap: 3mm;
+    padding: 1.1mm 0; border-bottom: 0.5pt dotted #d3dcdf;
+  }
+  .toc li.lvl2 { margin-top: 1.5mm; }
+  .toc li.lvl2 .toc-title { font-weight: 600; color: #102a2b; font-size: 10.6pt; }
+  .toc li.lvl3 { padding-left: 9mm; }
+  .toc .toc-num {
+    font-size: 8.2pt; color: #0f5257; font-weight: 700; min-width: 8mm;
+    font-variant-numeric: tabular-nums;
+  }
+  .toc li.lvl3 .toc-num { min-width: 10mm; color: #6d7d82; font-weight: 600; }
+  .toc .toc-title { color: #33454d; font-size: 9.6pt; }
+  .toc .dots { flex: 1; border-bottom: 0.6pt dotted #c6d2d6; transform: translateY(-1.2mm); }
+  .toc .toc-page {
+    font-size: 9pt; color: #33454d; font-variant-numeric: tabular-nums;
+    min-width: 6mm; text-align: right;
+  }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: #f2f7f6; border-left: 2.6pt solid #0f5257;
+    padding: 8pt 11pt 7pt; margin: 9pt 0 11pt; break-inside: avoid;
+  }
+  .callout .label {
+    font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #0f5257; font-weight: 700; margin-bottom: 3pt;
+  }
+  .callout p { margin: 0; font-size: 9.8pt; line-height: 1.5; text-align: left; }
+
+  /* ---------- code ---------- */
+  .codeblock {
+    margin: 7pt 0 10pt; padding: 7pt 9pt 8pt;
+    background: #f8fafb; border: 0.7pt solid #e2eaec;
+    border-left: 2.6pt solid #0f5257; border-radius: 2pt;
+    break-inside: auto;
+  }
+  .codeblock.keep { break-inside: avoid; }
+  .codeblock.newpage { break-before: page; }
+  .codeblock .caption {
+    font-size: 7.2pt; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #7b8a8f; font-weight: 700; margin-bottom: 5pt;
+  }
+  .highlight { background: transparent !important; }
+  .highlight pre {
+    margin: 0; font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 8.05pt; line-height: 1.42; color: #22323a;
+    white-space: pre-wrap; word-break: normal;
+  }
+  .out {
+    margin: 0; font-family: "Consolas", "Cascadia Mono", monospace;
+    font-size: 8.05pt; line-height: 1.5; color: #22323a; white-space: pre;
+  }
+
+  /* ---------- tables ---------- */
+  table {
+    width: 100%; border-collapse: collapse; margin: 5pt 0 11pt;
+    font-size: 8.9pt; break-inside: avoid;
+  }
+  th {
+    text-align: left; font-size: 7.2pt; letter-spacing: 0.07em;
+    text-transform: uppercase; color: #63737a; font-weight: 700;
+    border-bottom: 0.9pt solid #b9c6cb; padding: 2.5pt 5pt;
+  }
+  td {
+    padding: 3.2pt 5pt; border-bottom: 0.5pt solid #e4eaec;
+    vertical-align: top; line-height: 1.4;
+  }
+  tr:last-child td { border-bottom: 0.9pt solid #cfdadc; }
+  td code { font-size: 8.3pt; }
+  .num-col { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---------- figures ---------- */
+  figure { margin: 8pt 0 12pt; break-inside: avoid; }
+  figure svg { display: block; width: 100%; height: auto; }
+  figcaption {
+    font-size: 8.3pt; line-height: 1.45; color: #63737a; margin-top: 4pt;
+    text-align: left;
+  }
+
+  /* ---------- misc ---------- */
+  .kicker {
+    font-size: 7.4pt; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #b45309; font-weight: 700; margin: 0 0 3pt;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 9mm; }
+  .tight { margin-bottom: 3pt; }
+  .small { font-size: 9pt; color: #4d6067; }
+  .rule { border: 0; border-top: 0.8pt solid #dfe6e8; margin: 10pt 0; }
+  .ref { color: #0f5257; font-weight: 600; }
+  .badge {
+    display: inline-block; font-size: 7.4pt; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 700; color: #8a5a00;
+    background: #fdf3dd; border: 0.6pt solid #f0dfb8; border-radius: 2pt;
+    padding: 1pt 5pt; margin-right: 5pt;
+  }
+  ul, ol { margin: 3pt 0 8pt 0; padding-left: 14pt; }
+  li { margin-bottom: 1.5pt; text-align: justify; }
+  .avoid { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============================== COVER ============================== -->
+<section class="cover">
+  <div class="brandline">
+    <span><span class="accent">Avaloka</span> · Guruvai Sciences</span>
+    <span>Take-home assignment</span>
+  </div>
+
+  <div class="cover-main">
+    <div class="eyebrow">Data Structures &amp; Systems Design</div>
+    <h1>An O(1) cache, and a<br>scheduler that counts<br>the peak.</h1>
+    <p class="sub">
+      Two problems, one habit: give each question to the structure that answers
+      it cheaply, then prove the cost. Reasoning first, implementation second,
+      measurements last.
+    </p>
+  </div>
+
+  <div class="meta">
+    <div><span>Candidate</span>Vihan Chorada</div>
+    <div><span>Role</span>AI / Multi-Agent Systems Intern</div>
+    <div><span>Submitted</span>21 October 2026</div>
+    <div><span>Stack</span>Python 3.10 · standard library only</div>
+  </div>
+  <div class="cover-foot">Contents overleaf · project layout and raw output in the appendix</div>
+</section>
+
+<!-- ============================== TOC ============================== -->
+<section>
+  <div class="contents-title">Contents</div>
+  <p class="contents-note">
+    Each problem follows the same shape: the reasoning in plain English, the
+    implementation, the cases that break naive versions, and the evidence that
+    the implementation handles them. Section 3 answers the four discussion
+    questions directly.
+  </p>
+  {{TOC}}
+</section>
+
+<!-- ============================== PROBLEM 1 ============================== -->
+<h2 data-title="Problem 1 — O(1) LRU Cache"><span class="num">Section 1</span>Problem 1 — O(1) LRU Cache</h2>
+
+<p class="lede">
+  Both operations must be constant time with respect to cache size, so neither
+  may scan the cache. That single constraint decides the data structures.
+</p>
+
+<div class="callout">
+  <div class="label">The short version</div>
+  <p>
+    A hash map for lookup, a doubly linked list for order, and two sentinel
+    nodes to delete the edge cases. Every operation touches a constant number
+    of nodes no matter how full the cache is.
+  </p>
+</div>
+
+<figure>
+  <svg viewBox="0 0 640 242" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hash map pointing into a doubly linked list of cache nodes">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#5b7078"/>
+      </marker>
+      <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f5257"/>
+      </marker>
+    </defs>
+
+    <!-- hash map -->
+    <rect x="118" y="20" width="404" height="64" rx="3" fill="#f1f6f5" stroke="#c9dad7"/>
+    <text x="132" y="40" font-family="Segoe UI, sans-serif" font-size="8.5" letter-spacing="1.6" fill="#6b7f82" font-weight="700">HASH MAP</text>
+
+    <rect x="166" y="48" width="36" height="24" rx="3" fill="#ffffff" stroke="#b9c9cb"/>
+    <text x="184" y="64.5" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#0f5257">1</text>
+    <rect x="306" y="48" width="36" height="24" rx="3" fill="#ffffff" stroke="#b9c9cb"/>
+    <text x="324" y="64.5" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#0f5257">2</text>
+    <rect x="446" y="48" width="36" height="24" rx="3" fill="#ffffff" stroke="#b9c9cb"/>
+    <text x="464" y="64.5" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#0f5257">3</text>
+
+    <!-- key -> node pointers -->
+    <path d="M 184 72 L 184 155" stroke="#0f5257" stroke-width="1.1" stroke-dasharray="3 3" marker-end="url(#arrowAccent)"/>
+    <path d="M 324 72 L 324 155" stroke="#0f5257" stroke-width="1.1" stroke-dasharray="3 3" marker-end="url(#arrowAccent)"/>
+    <path d="M 464 72 L 464 155" stroke="#0f5257" stroke-width="1.1" stroke-dasharray="3 3" marker-end="url(#arrowAccent)"/>
+
+    <!-- sentinel head -->
+    <rect x="28" y="160" width="58" height="52" rx="3" fill="#eef2f3" stroke="#c9d4d7" stroke-dasharray="3 2"/>
+    <text x="57" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9.5" letter-spacing="1.2" fill="#718084" font-weight="700">HEAD</text>
+
+    <!-- node 1 (MRU) -->
+    <rect x="128" y="160" width="112" height="52" rx="3" fill="#ffffff" stroke="#0f5257" stroke-width="1.2"/>
+    <text x="184" y="182" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#1c2530">key 1</text>
+    <text x="184" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#5b7078">value</text>
+
+    <!-- node 2 -->
+    <rect x="268" y="160" width="112" height="52" rx="3" fill="#ffffff" stroke="#b9c9cb"/>
+    <text x="324" y="182" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#1c2530">key 2</text>
+    <text x="324" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#5b7078">value</text>
+
+    <!-- node 3 (LRU) -->
+    <rect x="408" y="160" width="112" height="52" rx="3" fill="#ffffff" stroke="#b9c9cb"/>
+    <text x="464" y="182" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#1c2530">key 3</text>
+    <text x="464" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#5b7078">value</text>
+
+    <!-- sentinel tail -->
+    <rect x="548" y="160" width="58" height="52" rx="3" fill="#eef2f3" stroke="#c9d4d7" stroke-dasharray="3 2"/>
+    <text x="577" y="190" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="9.5" letter-spacing="1.2" fill="#718084" font-weight="700">TAIL</text>
+
+    <!-- list arrows, forward on top and backward underneath -->
+    <line x1="86" y1="182" x2="126" y2="182" stroke="#5b7078" stroke-width="1.1" marker-end="url(#arrow)"/>
+    <line x1="240" y1="182" x2="266" y2="182" stroke="#5b7078" stroke-width="1.1" marker-end="url(#arrow)"/>
+    <line x1="380" y1="182" x2="406" y2="182" stroke="#5b7078" stroke-width="1.1" marker-end="url(#arrow)"/>
+    <line x1="520" y1="182" x2="546" y2="182" stroke="#5b7078" stroke-width="1.1" marker-end="url(#arrow)"/>
+
+    <line x1="546" y1="194" x2="522" y2="194" stroke="#9fb0b5" stroke-width="1" marker-end="url(#arrow)"/>
+    <line x1="406" y1="194" x2="382" y2="194" stroke="#9fb0b5" stroke-width="1" marker-end="url(#arrow)"/>
+    <line x1="266" y1="194" x2="242" y2="194" stroke="#9fb0b5" stroke-width="1" marker-end="url(#arrow)"/>
+    <line x1="126" y1="194" x2="88" y2="194" stroke="#9fb0b5" stroke-width="1" marker-end="url(#arrow)"/>
+
+    <text x="184" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" letter-spacing="1.4" fill="#0f5257" font-weight="700">MRU</text>
+    <text x="464" y="230" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="8" letter-spacing="1.4" fill="#a2620a" font-weight="700">LRU</text>
+  </svg>
+  <figcaption>
+    The two structures hold the same entries and are updated together. The map
+    gives O(1) access to a node; the list gives O(1) reordering. Neither one
+    alone can do both.
+  </figcaption>
+</figure>
+
+<h3 data-title="Approach: two structures, one job each">1.1&nbsp;&nbsp;Approach: two structures, one job each</h3>
+
+<p>
+  A cache is asked two different questions, and they are not the same question.
+  The first is <em>given this key, where is its entry?</em> The second is
+  <em>which entry has gone unused the longest?</em> A hash map is excellent at
+  the first and has no opinion about the second. A linked list or an array is
+  excellent at the second and needs a linear scan for the first. The whole
+  exercise is about refusing to make one structure do both.
+</p>
+
+<p>
+  So I gave each question to the structure that answers it natively, and stored
+  a link between them. The dictionary maps a key to the node that holds it, so
+  a lookup never walks the list. The nodes form a doubly linked list in recency
+  order, so once a node is in hand, moving it costs a fixed number of pointer
+  writes. The dictionary is what makes <code>get</code> independent of how many
+  entries the cache holds. The <code>prev</code> pointer is what makes removal
+  independent of where the node sits.
+</p>
+
+<p>
+  Order runs from most recently used at the front to least recently used at the
+  back. A hit in <code>get</code> moves its node to the front and returns the
+  value; a miss returns -1 and changes nothing. <code>put</code> either
+  overwrites an existing node and refreshes its position, or creates a node at
+  the front — and if the dictionary was already at capacity, the node at
+  <code>tail.prev</code> is unlinked and its key deleted from the dictionary.
+  Each node stores its own key for exactly that last step: eviction holds a
+  node, and turning a node back into a key would otherwise require a scan.
+</p>
+
+<p>
+  Both ends of the list are guarded by sentinel nodes that never hold data.
+  They exist to remove branches. Without them, insertion and removal need
+  separate cases for an empty list, for the head and for the tail — the three
+  places where hand-written LRU caches usually break. With them,
+  <code>head.next</code> and <code>tail.prev</code> always point at a node
+  object, and the same four assignments work at every position. Two extra
+  objects buy a hot path with no conditionals.
+</p>
+
+<p>
+  A note on what I did not use. Python's <code>OrderedDict</code> is this exact
+  structure implemented in C, and <code>functools.lru_cache</code> is the
+  standard production answer; both are faster than this code. I wrote the
+  pointers by hand because the assignment is about the mechanics, and because
+  the invariant worth testing — that the dictionary and the list describe the
+  same keys in the same order — is invisible behind <code>move_to_end</code>.
+</p>
+
+
+
+<h3 data-title="The cache implementation">1.2&nbsp;&nbsp;The cache implementation</h3>
+
+<p>
+  The complete module follows — the same file, unedited, is
+  <code>lru_cache.py</code> in the project. <code>__slots__</code> keeps the
+  per-entry overhead down; the helpers at the bottom exist for tests and
+  debugging and are not part of the hot path.
+</p>
+
+<div class="codeblock">
+  <div class="caption">lru_cache.py</div>
+  {{CODE_LRU}}
+</div>
+
+<h3 data-title="The cases that break naive versions">1.3&nbsp;&nbsp;The cases that break naive versions</h3>
+
+<p>
+  Most incorrect LRU caches are wrong in one of these five places. They are
+  listed here because each one is a test in the suite, not because the code is
+  defensive.
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:26%">Situation</th><th style="width:30%">Correct behaviour</th><th>How this code gets there</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>put</code> an existing key while full</td>
+      <td>Replace the value, refresh recency, evict nothing</td>
+      <td>The update branch returns before the capacity check, so the size never changes.</td>
+    </tr>
+    <tr>
+      <td><code>put</code> a new key while full</td>
+      <td>Evict exactly one entry, then insert</td>
+      <td>The check is <code>len == capacity</code> and happens before the insert; <code>tail.prev</code> is unlinked and its key removed from the map.</td>
+    </tr>
+    <tr>
+      <td><code>get</code> a key that is already at the front</td>
+      <td>Return the value; order is unchanged</td>
+      <td>Relinking is skipped when the node is already <code>head.next</code>. Correct either way, but it saves four pointer writes on a hot path.</td>
+    </tr>
+    <tr>
+      <td>Capacity of one</td>
+      <td>Every new key evicts the previous one</td>
+      <td>Sentinels make the single real node both <code>head.next</code> and <code>tail.prev</code>; no special case is needed.</td>
+    </tr>
+    <tr>
+      <td>Zero or negative capacity</td>
+      <td>Reject at construction</td>
+      <td>Every <code>put</code> would evict the entry it just inserted, so a zero-capacity cache cannot honour its own contract. It raises <code>ValueError</code>.</td>
+    </tr>
+    <tr>
+      <td>Stored value of -1</td>
+      <td>Indistinguishable from a miss</td>
+      <td>That is the specified API. <code>key in cache</code> is available when a caller needs to tell the two apart.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 data-title="Verification of the cache">1.4&nbsp;&nbsp;Verification of the cache</h3>
+
+<p>
+  {{TEST_COUNT}} tests, all passing. The ones that carry the most weight:
+</p>
+
+<ul>
+  <li>the exact sequence from the brief, checked step by step;</li>
+  <li>a sequence that a FIFO queue would also pass, followed by one that only
+      LRU survives — this is the test that catches “evict the oldest inserted”
+      instead of “evict the oldest used”;</li>
+  <li>update-existing-while-full, and capacity one;</li>
+  <li>300 randomised caches × 200 random operations, compared after
+      <em>every</em> operation against an independent <code>OrderedDict</code>
+      implementation: return value, size and the full recency order.</li>
+</ul>
+
+<p>
+  The randomised comparison is the one I trust most. It reaches update-then-evict
+  orderings that are tedious to enumerate by hand, and any divergence in the
+  pointer surgery shows up immediately as a mismatch in the recency order.
+</p>
+
+<p>
+  Constant cost is also measurable. The table below is from
+  <code>benchmark.py</code> on this machine (CPython 3.10, single thread):
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:46%">Workload</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>{{B_OPS}} mixed get/put, capacity 10,000</td><td>{{B_TIME}} s — about {{B_RATE}} million operations per second</td></tr>
+    <tr><td>200,000 operations at capacity 100</td><td>{{B_NS1}} ns per operation</td></tr>
+    <tr><td>200,000 operations at capacity 10,000</td><td>{{B_NS2}} ns per operation</td></tr>
+    <tr><td>200,000 operations at capacity 200,000</td><td>{{B_NS3}} ns per operation</td></tr>
+    <tr><td>10,000 live entries</td><td>{{B_BYTES}} bytes per entry, including the dictionary slot and the node</td></tr>
+  </tbody>
+</table>
+
+<p>
+  Flat per-operation cost across a 2,000× range of capacities is the practical
+  signature of O(1). The small drift is the dictionary's cache behaviour at
+  larger table sizes, not a growing algorithm.
+</p>
+
+<!-- ============================== PROBLEM 2 ============================== -->
+<h2 class="flow" data-title="Problem 2 — Event Scheduler"><span class="num">Section 2</span>Problem 2 — Event Scheduler</h2>
+
+<p class="lede">
+  Both functions answer the same underlying question — how many events are
+  alive at once — so both are built on one sorted sweep and one convention.
+</p>
+
+<div class="callout">
+  <div class="label">The short version</div>
+  <p>
+    Sort by start time and sweep once. The overlap check keeps the furthest end
+    seen so far; the room count keeps a min-heap of end times, and its maximum
+    size is the peak concurrency. The peak is the answer, because no schedule
+    can beat it and a greedy one never exceeds it.
+  </p>
+</div>
+
+<h3 data-title="One convention: half-open intervals">2.1&nbsp;&nbsp;One convention: half-open intervals</h3>
+
+<p>
+  Every event is treated as the half-open interval <code>[start, end)</code>.
+  The convention does two things at once. It encodes the brief's rule that an
+  event ending at 10 and an event starting at 10 do not conflict, and it turns
+  “is this room free?” into one comparison, <code>end &lt;= start</code>, with
+  no special case anywhere. Both functions share the convention, so a schedule
+  that <code>can_attend_all</code> accepts is a schedule
+  <code>min_rooms_required</code> counts as one room. They cannot disagree.
+</p>
+
+<h3 data-title="can_attend_all: is the diary free?">2.2&nbsp;&nbsp;<code>can_attend_all</code>: is the diary free?</h3>
+
+<p>
+  Sort by start time, then make a single pass while remembering
+  <code>furthest_end</code>, the latest moment at which the person is still
+  busy. An event can be attended only if it starts at or after that moment. If
+  it starts earlier, it collides with something already seen. After each event,
+  <code>furthest_end = max(furthest_end, end)</code>, so the value never moves
+  backwards even when a later event finishes sooner.
+</p>
+
+<p>
+  Keeping the running maximum, rather than comparing each event with its
+  immediate predecessor, is what makes nesting free: in
+  <code>[(9, 12), (10, 11)]</code> the second event ends before the first, but
+  it starts before <code>furthest_end = 12</code> and is caught without a
+  separate containment rule. The strict comparison <code>start &lt;
+  furthest_end</code> is the adjacency rule: equal values are allowed.
+</p>
+
+<p class="tight">
+  <strong>Complexity.</strong> O(n log n) time, dominated by the sort; O(n)
+  space for the sorted copy. An empty list returns <code>True</code> — nobody
+  has a conflict.
+</p>
+
+<h3 data-title="min_rooms_required: count the peak">2.3&nbsp;&nbsp;<code>min_rooms_required</code>: count the peak</h3>
+
+<p>
+  The key observation is that the answer is the peak concurrency. If <em>k</em>
+  events are in progress at the same instant, no schedule can use fewer than
+  <em>k</em> rooms, because each of them needs a distinct room at that instant.
+  That is the lower bound, and it is easy. The upper bound is the useful half:
+  a greedy sweep never opens a <em>k+1</em>-th room, because it only opens a
+  room when every existing room is busy — and at that moment the new event plus
+  the ones occupying those rooms are all in progress together, so the peak is
+  at least the number of rooms it is about to exceed. If the peak is
+  <em>k</em>, greedy never needs more than <em>k</em>. Minimum and maximum
+  concurrency are the same number.
+</p>
+
+<p>
+  The implementation keeps a min-heap of end times for the rooms in use. Events
+  are processed in start order. Before seating an event, every room whose end
+  is at or before the current start is popped — because the heap is ordered by
+  end time, one <code>while</code> loop releases all of them. Then the current
+  end is pushed. The heap now holds exactly the events in progress at this
+  start time, so its size is the concurrency at that instant.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:17%">Event</th>
+      <th style="width:20%">Heap before</th>
+      <th style="width:16%">Released</th>
+      <th style="width:24%">Heap after</th>
+      <th>Rooms in use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>(0, 30)</code></td><td><code>[]</code></td><td>—</td><td><code>[30]</code></td><td>1</td></tr>
+    <tr><td><code>(5, 10)</code></td><td><code>[30]</code></td><td>—</td><td><code>[10, 30]</code></td><td>2</td></tr>
+    <tr><td><code>(15, 20)</code></td><td><code>[10, 30]</code></td><td><code>10</code></td><td><code>[20, 30]</code></td><td>2</td></tr>
+  </tbody>
+</table>
+
+<p>
+  Peak is 2, and two rooms really are enough: the all-day event keeps one room
+  while the two short events share the other. For the brief's
+  <code>[(9,10), (10,11), (11,12)]</code>, every event releases its room before
+  the next one starts, so the heap never holds more than one entry and the
+  answer is 1.
+</p>
+
+<h3 data-title="The scheduler implementation">2.4&nbsp;&nbsp;The scheduler implementation</h3>
+
+<p>
+  The module is <code>event_scheduler.py</code>. It validates that no event ends
+  before it starts, and returns the schedule in chronological order so the
+  output is stable regardless of input order.
+</p>
+
+<div class="codeblock">
+  <div class="caption">event_scheduler.py</div>
+  {{CODE_SCHED}}
+</div>
+
+<p>
+  A classical alternative avoids the heap entirely: sort starts and ends into
+  two arrays and walk them with two pointers, opening a room when the next start
+  precedes the current end and closing one otherwise. It is also O(n log n),
+  with a smaller constant and the same O(n) space. I chose the heap because its
+  contents are the live events, which is precisely the state needed to hand out
+  concrete room numbers in <span class="ref">3.3</span>; the two-pointer version
+  counts rooms but forgets who is in them.
+</p>
+
+<h3 data-title="Verification of the scheduler">2.5&nbsp;&nbsp;Verification of the scheduler</h3>
+
+<p>
+  Beyond the examples in the brief, the suite covers adjacency, full nesting,
+  duplicate events at the same time, unsorted input, empty input and reversed
+  intervals. Two randomised checks carry the correctness argument:
+</p>
+
+<ul>
+  <li>400 random event sets compared against the O(n²) definition of overlap
+      (two intervals conflict when <code>a.start &lt; b.end</code> and
+      <code>b.start &lt; a.end</code>);</li>
+  <li>400 random event sets compared against a brute-force peak count, which
+      samples the number of covering events at every start time.</li>
+</ul>
+
+<p>
+  Room assignment gets its own property test: over 200 random schedules, the
+  number of distinct rooms must equal <code>min_rooms_required</code>, and no
+  two events placed in the same room may overlap. Those two assertions together
+  are the specification.
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:42%">100,000 random events</th><th>Time</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>can_attend_all</code></td><td>{{B_S1}} s</td><td><code>False</code></td></tr>
+    <tr><td><code>min_rooms_required</code></td><td>{{B_S2}} s</td><td>{{B_ROOMS}} rooms</td></tr>
+    <tr><td><code>assign_rooms</code></td><td>{{B_S3}} s</td><td>100,000 assignments</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== DISCUSSION ============================== -->
+<h2 class="flow" data-title="Final Discussion &amp; Analysis"><span class="num">Section 3</span>Final Discussion &amp; Analysis</h2>
+
+<p class="lede">
+  Complexity first, then the trade-off behind the cache's two structures, then
+  the two extensions: naming rooms, and sharing the cache between threads.
+</p>
+
+<h3 data-title="Time and space complexity">3.1&nbsp;&nbsp;Time and space complexity</h3>
+
+<p>
+  <em>n</em> is the number of events; <em>C</em> is the cache capacity. All
+  bounds are for the implementation in this document.
+</p>
+
+<h4>Problem 1 — LRU cache</h4>
+
+<table>
+  <thead>
+    <tr><th style="width:24%">Operation</th><th style="width:18%">Time</th><th style="width:16%">Space</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>LRUCache(C)</code></td><td>O(1)</td><td>O(1)</td><td>Two sentinels and an empty dictionary.</td></tr>
+    <tr><td><code>get(key)</code></td><td>O(1) expected</td><td>O(1)</td><td>One dictionary probe, then at most two pointer splices.</td></tr>
+    <tr><td><code>put(key, value)</code></td><td>O(1) expected</td><td>O(1)</td><td>One probe, one splice, and at most one eviction (also a splice).</td></tr>
+    <tr><td>Whole cache</td><td>—</td><td>O(C)</td><td>One dictionary entry and one node per live key; {{B_BYTES}} bytes per entry measured.</td></tr>
+    <tr><td><code>keys_mru_to_lru()</code></td><td>O(C)</td><td>O(1) extra</td><td>Debug helper; it walks the list and is not used by the cache itself.</td></tr>
+    <tr><td><code>ThreadSafeLRUCache.get/put</code></td><td>O(1) + lock</td><td>O(1)</td><td>One mutex acquisition around the same work.</td></tr>
+    <tr><td><code>ShardedLRUCache.get/put</code></td><td>O(1) + shard lock</td><td>O(C)</td><td>Hash the key, lock one shard, do the same work.</td></tr>
+  </tbody>
+</table>
+
+<p class="small">
+  “Expected” is the honest qualifier. The linked-list work is O(1) in the worst
+  case, but the dictionary probe is O(1) only on average: adversarial keys can
+  collide and degrade a probe to O(n). CPython randomises string hashes and
+  uses open addressing, which makes that impractical for normal keys, but it is
+  the reason a cache exposed to untrusted input should use a keyed or
+  cryptographic hash rather than a predictable one. The two list primitives,
+  <code>_detach</code> and <code>_push_front</code>, are O(1) each: a fixed
+  number of pointer writes and no search.
+</p>
+
+<h4>Problem 2 — Event scheduler</h4>
+
+<table>
+  <thead>
+    <tr><th style="width:28%">Function</th><th style="width:16%">Time</th><th style="width:14%">Space</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>can_attend_all</code></td><td>O(n log n)</td><td>O(n)</td><td>Sort dominates; one linear scan afterwards. The sorted copy is the O(n).</td></tr>
+    <tr><td><code>min_rooms_required</code></td><td>O(n log n)</td><td>O(n)</td><td>One sort, n pushes, at most n pops, each O(log n).</td></tr>
+    <tr><td><code>assign_rooms</code></td><td>O(n log n)</td><td>O(n)</td><td>Same sweep with two heaps; every room enters and leaves each heap at most once.</td></tr>
+    <tr><td><code>room_label</code></td><td>O(log n)</td><td>O(1)</td><td>Base-26 digits of the room index; at most a handful of divisions.</td></tr>
+  </tbody>
+</table>
+
+<p>
+  <code>_validated</code> is one O(n) pass and allocates the list it returns, so
+  it does not change the bound. Sorting is the floor for both functions:
+  comparison-based sorting is Ω(n log n), and any algorithm that needs global
+  order inherits that bound. There is one escape worth knowing: if times are
+  small integers — minutes in a week, for instance, where <em>T</em> = 10,080 —
+  a counting or bucket sort replaces the comparison sort, giving O(n + T) time
+  at the cost of O(T) memory. For a meeting platform that is effectively linear
+  and often the right trade; for arbitrary timestamps, the O(n log n) version is
+  the general one.
+</p>
+
+<h3 data-title="Trade-offs: why a hash map plus a doubly linked list">3.2&nbsp;&nbsp;Trade-offs: why a hash map plus a doubly linked list</h3>
+
+<p>
+  The pairing is not a trick; it is the only arrangement in which both
+  operations are O(1) without extra bookkeeping. The two structures answer
+  complementary questions, and each one is cheap only because the other exists.
+  A dictionary alone can find a value but cannot find the oldest one without a
+  scan. A list alone can find the oldest one instantly but cannot find a key
+  without a scan.
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:34%">Structure</th><th style="width:15%">Lookup</th><th style="width:17%">Evict LRU</th><th>Why it is not enough</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hash map only</td><td>O(1)</td><td>O(n)</td><td>No order; finding the oldest means scanning every entry, or storing timestamps and scanning for the minimum.</td></tr>
+    <tr><td>Array + hash map</td><td>O(1)</td><td>O(n)</td><td>Moving an entry to the front shifts every element after it.</td></tr>
+    <tr><td>Singly linked list + map</td><td>O(1)</td><td>O(n)</td><td>Unlinking needs the predecessor, and a singly linked node does not know it.</td></tr>
+    <tr><td><strong>Hash map + doubly linked list</strong></td><td><strong>O(1)</strong></td><td><strong>O(1)</strong></td><td>—</td></tr>
+    <tr><td>Hash map + min-heap by timestamp</td><td>O(1)</td><td>O(log n)</td><td>A log factor per eviction, a monotonic counter per entry, and no stable tie-breaking.</td></tr>
+    <tr><td><code>OrderedDict</code></td><td>O(1)</td><td>O(1)</td><td>The same design in C: faster, but it hides the mechanics and does not port to languages without an ordered map.</td></tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>Why doubly linked and not singly linked.</strong> To remove a node
+  from a singly linked list you need the node before it, and finding that node
+  means walking from the head — O(n), which destroys the guarantee at exactly
+  the moment it matters, during eviction. A <code>prev</code> pointer makes
+  removal independent of position: four assignments, no search. Keeping a
+  separate “predecessor” dictionary would also work, but it costs another hash
+  lookup and more memory than a pointer that is already there.
+</p>
+
+<p>
+  <strong>What the combination costs.</strong> Each entry carries two pointers
+  and a dictionary slot, so memory is roughly double a bare dictionary —
+  measured at {{B_BYTES}} bytes per entry here. Nodes are separately allocated, so a
+  <code>get</code> touches a dictionary bucket, then the node, then its two
+  neighbours: three or four cache lines in unrelated places. At ten thousand
+  entries that is noise; at fifty million it is the dominant cost, and it is
+  why high-throughput caches avoid a global linked list. The structure is also
+  hostile to lock-free concurrency, because every eviction mutates shared
+  neighbours (see <span class="ref">3.4</span>).
+</p>
+
+<p>
+  <strong>Why not always exact LRU.</strong> LRU is a good policy for locality,
+  not a universally good one. A sequential scan of one-off keys evicts
+  everything useful, and against an adversarial access pattern LRU can be
+  arbitrarily worse than Belady's offline optimum. Production systems
+  therefore approximate it: CLOCK / second-chance keeps a reference bit instead
+  of a list, 2Q and segmented LRU add a probationary segment so scans cannot
+  flush the hot set, and Redis samples a handful of keys and evicts the oldest
+  among them rather than maintaining a global order. Each of those gives up
+  exactness for locality, memory or throughput — the same trade-off this
+  exercise makes in the other direction.
+</p>
+
+<h3 data-title="Future proofing: assigning room numbers">3.3&nbsp;&nbsp;Future proofing: assigning room numbers</h3>
+
+<p>
+  Counting rooms is not the same as naming them. The sweep already knows which
+  rooms are free at each start time, so the change is to carry identities
+  instead of a count: one heap of free room ids, and one heap of
+  <code>(end, room id)</code> for busy rooms. When an event starts, every room
+  whose end is at or before that start moves from the busy heap to the free
+  heap; the event then takes the smallest free id, or mints a new one. The
+  result is deterministic, reuses the lowest-numbered room available, and uses
+  exactly <code>min_rooms_required</code> rooms.
+</p>
+
+<div class="codeblock">
+  <div class="caption">event_scheduler.py — the assignment loop</div>
+  {{CODE_ASSIGN}}
+</div>
+
+<p>
+  The greedy is optimal for the same reason as the count: a new room is opened
+  only when the free heap is empty, which means every existing room is busy at
+  that instant, so the number of rooms in use is a lower bound on the peak.
+  Choosing the smallest free id rather than an arbitrary one changes only the
+  labels, never the number of rooms or the feasibility of the schedule.
+</p>
+
+<p>
+  Two details make it usable rather than merely correct. If the caller needs the
+  answers in its own order instead of chronological order, sort by
+  <code>(start, end, original index)</code> and write into a preallocated result
+  list; that is a two-line change which does not touch the sweep. And labels are
+  generated in bijective base-26, so the sequence continues past Z without
+  collisions: <code>Room A … Room Z, Room AA, Room AB …</code>.
+</p>
+
+<div class="codeblock keep">
+  <div class="caption">actual output — python demo.py</div>
+  <pre class="out">assign_rooms
+  Room A   09:00-10:00   Kickoff
+  Room B   09:00-11:00   Design review
+  Room A   10:00-10:30   1:1 with Priya
+  Room A   10:30-11:30   Customer call
+  Room B   11:00-12:00   Retro</pre>
+</div>
+
+<p>
+  In a real platform the same sweep would need more state, and at some point
+  greedy stops being enough:
+</p>
+
+<ul>
+  <li><strong>Resources.</strong> Projectors, capacity or accessibility turn
+      room choice into a constraint-satisfaction problem, and the greedy
+      assignment is no longer guaranteed optimal; a bipartite matching or a
+      small ILP is the honest tool.</li>
+  <li><strong>Buffers.</strong> Ten minutes to reset a room is just an inflated
+      end time, <code>end + buffer</code>, which the existing comparison
+      already handles.</li>
+  <li><strong>Time zones and DST.</strong> Store UTC instants rather than
+      wall-clock integers; a half-open interval over <code>datetime</code>
+      behaves exactly like the integer version.</li>
+  <li><strong>Recurring events.</strong> Expand the recurrence rule over a
+      bounded horizon, then schedule the expanded instances.</li>
+  <li><strong>Fairness.</strong> Replacing “smallest free id” with “least-used
+      room” spreads wear and keeps premium rooms available; it is a different
+      heap key, not a different algorithm.</li>
+  <li><strong>Correctness under concurrency.</strong> Two requests must not
+      book the same room at once. A database exclusion constraint on
+      <code>(room_id, tstzrange(start, end))</code> enforces the invariant where
+      it matters, rather than trusting the scheduler process to be the only
+      writer.</li>
+</ul>
+
+<h3 data-title="Concurrency: making the cache thread-safe">3.4&nbsp;&nbsp;Concurrency: making the cache thread-safe</h3>
+
+<p>
+  The first thing to notice is that <code>get</code> is not a read. A hit
+  reorders the linked list, so every lookup is a mutation. That rules out the
+  reflex answer of “wrap it in a readers-writer lock”: every <code>get</code>
+  would need the write lock, and the lock would serialise exactly as much as a
+  plain mutex while adding overhead.
+</p>
+
+<p>
+  Without a lock, several failure modes are reachable. Two threads can both
+  observe a full cache and each evict a different node for one insertion, so
+  the cache silently shrinks. A node can be detached twice, leaving its
+  neighbours pointing at each other incorrectly. A thread can hold a reference
+  to a node that another thread has just evicted and reinsert it, producing a
+  node that is in the list twice or a key that points to a node no longer in the
+  list at all. The GIL does not prevent any of this: it switches between
+  bytecodes, and the window between the dictionary probe and the four pointer
+  writes is many bytecodes wide.
+</p>
+
+<div class="codeblock keep">
+  <div class="caption">thread_safe.py — the minimal correct change</div>
+  {{CODE_LOCK}}
+</div>
+
+<p>
+  One mutex around both operations is correct, simple, and enough for most
+  services. It also has to cover compound operations: “get, and on a miss
+  compute and put” is not atomic just because each half is. Keep the critical
+  section short, and never call user code — a loader, a network call, a
+  callback — while holding the lock.
+</p>
+
+<p>
+  When a single lock becomes the bottleneck, the practical answer is sharding,
+  not finer-grained locking of the same list: the list is one global order, so
+  every eviction touches nodes that other operations also touch, and per-node
+  locks would need hand-over-hand locking across four nodes. Sharding gives each
+  shard its own list, lock and slice of the capacity, so different shards never
+  contend. The price is per-shard eviction, which makes the global policy
+  approximate: a hot key that hashes to a cold shard can be evicted before a
+  cold key in a hot shard. <code>hash(key) % shards</code> spreads typical
+  keysets evenly, so this is usually acceptable — but it is a behavioural
+  change, not just a performance one.
+</p>
+
+<p>
+  At larger scale the same idea appears in different clothes. Redis keeps a
+  24-bit access clock per key and evicts the oldest of a small random sample,
+  which avoids a global list entirely. Caffeine records reads in a striped,
+  lock-free buffer and replays them into the eviction policy asynchronously, so
+  recency is eventually consistent in exchange for scalability. Both accept a
+  small amount of policy error to remove the contention that an exact global
+  order creates.
+</p>
+
+<p>
+  I verified the wrapper rather than assuming it: eight threads × 4,000 random
+  operations, with <code>sys.setswitchinterval(1e-6)</code> to force frequent
+  preemption, then a white-box check that the map and the list contain the same
+  keys in the same order, that the size is exactly the capacity, and that every
+  <code>prev</code>/<code>next</code> link is consistent. A stress test cannot
+  prove the absence of a race; it can only make one likely to appear, which is
+  why the invariant check is the part that matters.
+</p>
+
+<p>
+  One boundary worth naming: this lock protects threads inside one process. An
+  <code>asyncio.Lock</code> is the coroutine equivalent but does not protect
+  threads, and a cache shared between processes needs a shared server — Redis
+  or Memcached — where writes are serialised by construction.
+</p>
+
+<!-- ============================== APPENDIX ============================== -->
+<div class="appendix">
+<h2 class="flow" data-title="Appendix"><span class="num">Section 4</span>Appendix</h2>
+
+<h3 data-title="Project layout and how to run">4.1&nbsp;&nbsp;Project layout and how to run</h3>
+
+<p>
+  The solution modules have no dependencies outside the standard library.
+  <code>pytest</code> runs the tests; <code>Pygments</code> is used only by the
+  script that builds this PDF.
+</p>
+
+<div class="codeblock keep">
+  <div class="caption">repository layout</div>
+  <pre class="out">Avaloka_Assignment/
+├── lru_cache.py              Problem 1 — no dependencies
+├── event_scheduler.py        Problem 2 — no dependencies
+├── thread_safe.py            Section 3.4 - locked and sharded wrappers
+├── demo.py                   the output shown in 3.3 and 4.2
+├── benchmark.py              the numbers in 1.4 and 2.5
+├── build_report.py           rebuilds this PDF from the sources
+├── tests/
+│   ├── test_lru_cache.py
+│   ├── test_event_scheduler.py
+│   └── test_thread_safety.py
+└── Vihan_Chorada_Avaloka_Assignment.pdf</pre>
+</div>
+
+<div class="codeblock keep">
+  <div class="caption">commands</div>
+  <pre class="out">python -m pytest tests -q      # {{TEST_COUNT}} tests
+python demo.py                 # readable walkthrough
+python benchmark.py            # timings quoted above
+python build_report.py         # regenerates this document</pre>
+</div>
+
+<h3 data-title="Captured output">4.2&nbsp;&nbsp;Captured output</h3>
+
+<p>
+  The blocks below are the unedited output of <code>python demo.py</code> on the
+  run that produced this document. They are the same code that the tests
+  exercise.
+</p>
+
+<div class="codeblock keep">
+  <div class="caption">python demo.py — the cache</div>
+  <pre class="out">{{OUT_DEMO_CACHE}}</pre>
+</div>
+
+<div class="codeblock keep">
+  <div class="caption">python demo.py — the scheduler</div>
+  <pre class="out">{{OUT_DEMO_SCHED}}</pre>
+</div>
+
+<h3 data-title="Test suite and benchmark">4.3&nbsp;&nbsp;Test suite and benchmark</h3>
+
+<div class="codeblock keep">
+  <div class="caption">python -m pytest tests -q</div>
+  <pre class="out">{{OUT_TESTS}}</pre>
+</div>
+
+<div class="codeblock keep">
+  <div class="caption">python benchmark.py</div>
+  <pre class="out">{{OUT_BENCH}}</pre>
+</div>
+
+<hr class="rule">
+<p class="small" style="text-align:left">
+  Every code block in this document is included from the files above at build
+  time, so the printed source and the tested source cannot drift apart. The
+  measurements are from CPython 3.10 on the machine that built the PDF; they
+  are here to show the shape of the cost, not to serve as a benchmark of any
+  particular hardware.
+</p>
+</div>
+
+</body>
+</html>

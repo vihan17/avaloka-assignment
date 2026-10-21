@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated report assets; the template is the source
+build/*
+!build/template.html
+
+# Personal submission note, not part of the published project
+submission_email.md
